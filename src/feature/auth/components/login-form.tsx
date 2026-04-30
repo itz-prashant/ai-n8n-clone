@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
   email: z.email("Please enter a valid email address"),
@@ -55,7 +56,7 @@ const LoginForm = () => {
           router.push("/");
         },
         onError: (ctx) => {
-          router.push(ctx.error.message);
+          toast.error(ctx.error.message)
         },
       }
     );
@@ -106,7 +107,7 @@ const LoginForm = () => {
                     Continue With Google
                   </Button>
                 </div>
-                <div className="gird gap-6">
+                <div className="grid gap-6">
                   <FormField
                     control={form.control}
                     name="email"
