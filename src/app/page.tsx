@@ -17,6 +17,8 @@ const Page = () => {
     }
   }))
 
+  const testAi = useMutation(trpc.testAi.mutationOptions())
+
   // await requireAuth()
 
   return (
@@ -25,6 +27,9 @@ const Page = () => {
       <div>
         {JSON.stringify(data)}
       </div>
+      <Button disabled={testAi.isPending} onClick={()=> testAi.mutate()}>
+        Test Ai
+      </Button>
       <Button disabled={create.isPending} onClick={()=> create.mutate()}>
         Create Workflow
       </Button>
