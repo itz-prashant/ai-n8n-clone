@@ -1,0 +1,25 @@
+import Image from "next/image";
+import Link from "next/link";
+
+const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
+
+  return (
+    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+      <div className="flex w-full max-w-sm flex-col gap-4">
+        <Link href={"/"}>
+          <Image
+            src={"/logos/logo.svg"}
+            alt="Logo"
+            width={30}
+            height={30}
+            className="flex items-center gap-2 self-center font-medium"
+          />
+          Nodebase
+        </Link>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default AuthLayout;

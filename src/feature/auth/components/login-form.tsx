@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const loginSchema = z.object({
   email: z.email("Please enter a valid email address"),
@@ -38,25 +39,26 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: ""
+      password: "",
     },
   });
 
   const onSubmit = async (values: LoginFormValues) => {
-    await authClient.signIn.email({
-      email: values.email,
-      password: values.password,
-      callbackURL: '/'
-    },
-    {
-      onSuccess: ()=>{
-        router.push("/")
+    await authClient.signIn.email(
+      {
+        email: values.email,
+        password: values.password,
+        callbackURL: "/",
       },
-      onError: (ctx)=>{
-        router.push(ctx.error.message)
+      {
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: (ctx) => {
+          router.push(ctx.error.message);
+        },
       }
-    }
-  )
+    );
   };
 
   const isPending = form.formState.isSubmitting;
@@ -80,6 +82,12 @@ const LoginForm = () => {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      src={"/logos/github.svg"}
+                      alt="Github"
+                      width={20}
+                      height={20}
+                    />
                     Continue With Github
                   </Button>
 
@@ -89,6 +97,12 @@ const LoginForm = () => {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      src={"/logos/google.svg"}
+                      alt="Github"
+                      width={20}
+                      height={20}
+                    />
                     Continue With Google
                   </Button>
                 </div>
@@ -132,10 +146,10 @@ const LoginForm = () => {
                   </Button>
                 </div>
                 <div className="text-center text-sm">
-                    Dont&apos;t have an account{" "}
-                    <Link href='/signup' className="underline underline-offset-4">
+                  Dont&apos;t have an account{" "}
+                  <Link href="/signup" className="underline underline-offset-4">
                     Sign up
-                    </Link>
+                  </Link>
                 </div>
               </div>
             </form>
