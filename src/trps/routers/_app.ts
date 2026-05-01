@@ -1,6 +1,7 @@
 import { inngest } from '@/ingest/client';
 import { createTRPCRouter, protectedProcedure } from '../init';
 import prisma from '@/lib/db';
+// import { TRPCError } from '@trpc/server';
 // import {generateText} from 'ai'
 // import { google } from '@ai-sdk/google';
 
