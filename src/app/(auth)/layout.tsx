@@ -5,13 +5,9 @@ import "../globals.css"
 const Layout = async ({ children }: { children: React.ReactNode }) => {
     await requireUnauth()
   return (
-    <html>
-      <body>
         <AuthLayout>
         {children}
-    </AuthLayout>
-      </body>
-    </html>
+        </AuthLayout>
   );
 };
 
