@@ -12,6 +12,8 @@
     "@ai-sdk/google": "^3.0.65",
     "@base-ui/react": "^1.4.1",
     "@hookform/resolvers": "^5.2.2",
+    "@polar-sh/better-auth": "^1.8.3",
+    "@polar-sh/sdk": "^0.47.1",
     "@prisma/client": "^6.16.3",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
