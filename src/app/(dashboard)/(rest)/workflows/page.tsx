@@ -1,12 +1,20 @@
 import { WorkFlowContainer, WorkFlowsList } from "@/feature/workflows/components/workflows"
+import { workflowsParamsLoader } from "@/feature/workflows/server/params-loader"
 import { prefetchWorkflows } from "@/feature/workflows/server/prefetch"
 import { HydrateClient } from "@/trps/server"
+import type { SearchParams } from "nuqs/server"
 import { Suspense } from "react"
 import {ErrorBoundary} from "react-error-boundary"
 
-const page = () => {
+type Props = {
+  searchParams : Promise<SearchParams>
+}
 
-  prefetchWorkflows()
+const page = async ({searchParams}:Props) => {
+
+  const params = await workflowsParamsLoader(searchParams)
+
+  prefetchWorkflows(params)
 
   return (
     <WorkFlowContainer>
