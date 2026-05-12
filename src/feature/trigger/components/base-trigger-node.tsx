@@ -7,13 +7,14 @@ import { WorkflowNode } from "@/components/workflow-node";
 import { BaseNode, BaseNodeContent } from "@/components/react-flow/base-node";
 import Image from "next/image";
 import { BaseHandle } from "@/components/react-flow/base-handle";
+import {type NodeStatus, NodeStatusIndicator } from "@/components/react-flow/node-status-indicator";
 
 interface BaseTriggerNodeProps extends NodeProps{
     icon: LucideIcon | string
     name: string
     description?: string
     children?:ReactNode
-    // status?: NodeStatus;
+    status?: NodeStatus;
     onSetting?:()=>void
     onDoubleClick?:()=>void
 }
@@ -23,6 +24,7 @@ export const BaseTriggerNode = memo(({
     icon:Icon,
     name,
     description,
+    status= 'initial',
     children,
     onSetting,
     onDoubleClick
@@ -50,7 +52,12 @@ export const BaseTriggerNode = memo(({
             onDelete={handleDelete}
             onSettings={onSetting}
         >
-            <BaseNode onDoubleClick={onDoubleClick} 
+           <NodeStatusIndicator
+            status={status}
+            variant="border"
+            className= "rounded-l-2xl"
+           >
+             <BaseNode status={status} onDoubleClick={onDoubleClick} 
             className="rounded-l-2xl relative group">
                 <BaseNodeContent>
                     {typeof Icon == 'string' ? (
@@ -71,6 +78,7 @@ export const BaseTriggerNode = memo(({
                     />
                 </BaseNodeContent>
             </BaseNode>
+           </NodeStatusIndicator>
         </WorkflowNode>
     )
 })

@@ -46,7 +46,7 @@ export const WorkflowNode = ({
                         {name}
                     </p>
                     {description &&(
-                        <p className="text-muted-foreground truncate text-sm">
+                        <p className="text-muted-foreground truncate text-sm truncate">
                         {description}
                     </p>
                     )}
